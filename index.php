@@ -6,26 +6,7 @@
         $lunghezza = $_GET['lunghezzaPassword'];
     };
     
-    function generaPassword($nIter){
-        $caratteri = ['a','b','c','d','E','F','G','H','@','#','?','!'];
-        $password = [];
-        
-        for( $i = 0; $i < ($nIter); $i++){
-            $position = rand(0, 10);
-            $password[] = $caratteri[$position];
-            
-        };
-
-        foreach($password as $singolo){
-            echo $singolo;
-        };
-        /*
-        echo "<pre>";
-        var_dump($singolo);
-        echo "</pre>";
-        */
-        return $password;
-    };
+    require __DIR__ . '/functions.php';
 
 ?>
 
@@ -39,23 +20,24 @@
     <title>Password_Generator</title>
 </head>
 <body>
-    <div class="container">
-        <form action="index.php" method="GET">
-            <label for="lunghezzaPassword">
-                Scegli numero caratteri
-            </label>
-            <input type="number" name="lunghezzaPassword" id="lunghezzaPassword">
-            <button type="submit">invia</button>
-        </form>
+    <div class="container bg-primary-subtle">
+        <div class="row p-3 mb-2">
+            <form action="index.php" method="GET">
+                <label for="lunghezzaPassword">
+                    Scegli numero caratteri
+                </label>
+                <input type="number" name="lunghezzaPassword" id="lunghezzaPassword">
+                <button type="submit">invia</button>
+            </form>
+        </div>
+        
+        <?php if(isset($_GET['lunghezzaPassword']) && ($_GET['lunghezzaPassword'] != '')){?>
+                <h2 class="bg-success p-3 mb-2">la tua password è:<?php generaPassword($lunghezza); ?></h2>
+            <?php }else{ ?>
+                <h2 class="bg-warning-subtle p-3 mb-2">inserisci un numero</h2>
+        <?php }?>
     </div>
     
-    <?php 
-        if(isset($_GET['lunghezzaPassword']) && ($_GET['lunghezzaPassword'] != '')){
-        ?>
-            <h2>la tua password è:<?php generaPassword($lunghezza); ?></h2>
-        <?php }else{ ?>
-            <h2>inserisci un numero</h2>
-        <?php }?>
     
     
 
