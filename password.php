@@ -1,6 +1,5 @@
 <?php
     session_start();
-
 ?>
 
 
@@ -13,6 +12,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h2 class="bg-success p-3 mb-2">la tua password è:<?php $SESSION['password'] ?></h2>
+    <h2 class="bg-success p-3 mb-2">la tua password è:
+        <?php foreach($_SESSION['password'] as $singolo){
+            echo $singolo;
+            }; 
+        ?>
+    </h2>
+    <a href="index.php">Torna alla homepage</a>
 </body>
 </html>
