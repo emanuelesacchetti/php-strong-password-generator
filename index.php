@@ -4,24 +4,28 @@
     
     if(isset($_GET['lunghezzaPassword']) && ($_GET['lunghezzaPassword'] != '')){
         $lunghezza = $_GET['lunghezzaPassword'];
-        echo $lunghezza;
     };
-    /*
-    function generaPassword($nItem){
+    
+    function generaPassword($nIter){
         $caratteri = ['a','b','c','d','E','F','G','H','@','#','?','!'];
         $password = [];
-        $position = rand(0, count($caratteri - 1));
-
-        for( $i = 0; $i < count($nItem); $i++){
-            $password[] = $carattere[$position]
+        
+        for( $i = 0; $i < ($nIter); $i++){
+            $position = rand(0, 10);
+            $password[] = $caratteri[$position];
+            
         };
-       
-        return $password;
-    }
-    */
-    //$passwordGenerata = generaPassword($lunghezza);
-    
 
+        foreach($password as $singolo){
+            echo $singolo;
+        };
+        /*
+        echo "<pre>";
+        var_dump($singolo);
+        echo "</pre>";
+        */
+        return $password;
+    };
 
 ?>
 
@@ -44,9 +48,18 @@
             <button type="submit">invia</button>
         </form>
     </div>
-    <?php
-        //echo generaPassword($lunghezza);
-    ?>
+    
+    <?php 
+        if(isset($_GET['lunghezzaPassword']) && ($_GET['lunghezzaPassword'] != '')){
+        ?>
+            <h2>la tua password è:<?php generaPassword($lunghezza); ?></h2>
+        <?php }else{ ?>
+            <h2>inserisci un numero</h2>
+        <?php }?>
+    
+    
+
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
