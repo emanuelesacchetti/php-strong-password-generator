@@ -1,13 +1,13 @@
 <?php
-
+    session_start();
     $lunghezza = '';
     
     if(isset($_GET['lunghezzaPassword']) && ($_GET['lunghezzaPassword'] != '')){
         $lunghezza = $_GET['lunghezzaPassword'];
     };
     
-    require __DIR__ . '/functions.php';
-
+    require_once __DIR__ . '/functions.php';
+    $_SESSION['password'] = generaPassword($lunghezza);
 ?>
 
 <!DOCTYPE html>
@@ -31,8 +31,8 @@
             </form>
         </div>
         
-        <?php if(isset($_GET['lunghezzaPassword']) && ($_GET['lunghezzaPassword'] != '')){?>
-                <h2 class="bg-success p-3 mb-2">la tua password è:<?php generaPassword($lunghezza); ?></h2>
+        <?php if(isset($_GET['lunghezzaPassword']) && ($_GET['lunghezzaPassword'] != '')){
+                header('Location: ./password.php'); ?>
             <?php }else{ ?>
                 <h2 class="bg-warning-subtle p-3 mb-2">inserisci un numero</h2>
         <?php }?>
